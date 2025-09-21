@@ -67,6 +67,33 @@ const engineeringCourses = [
   }
 ];
 
+const commerceCourses = [
+  {
+    title: "Diploma in Business Administration",
+    description: "Management principles, business operations, and administrative skills.",
+    duration: "3 Years",
+    category: "business" as const,
+    subjects: ["Business Management", "Accounting", "Marketing", "Human Resources"],
+    careerPaths: ["Administrative Officer", "Business Coordinator", "Office Manager"]
+  },
+  {
+    title: "Diploma in Banking & Finance",
+    description: "Financial services, banking operations, and investment management.",
+    duration: "3 Years",
+    category: "business" as const,
+    subjects: ["Banking Operations", "Financial Accounting", "Insurance", "Investment Planning"],
+    careerPaths: ["Bank Officer", "Financial Advisor", "Insurance Agent"]
+  },
+  {
+    title: "Diploma in Office Management",
+    description: "Office administration, secretarial skills, and business communication.",
+    duration: "3 Years",
+    category: "business" as const,
+    subjects: ["Office Administration", "Business Communication", "Computer Applications", "Record Keeping"],
+    careerPaths: ["Office Administrator", "Executive Assistant", "Data Entry Operator"]
+  }
+];
+
 const otherCourses = [
   {
     title: "Diploma in Hotel Management",
@@ -99,84 +126,59 @@ const otherCourses = [
     category: "medical" as const,
     subjects: ["Pharmacology", "Pharmaceutical Chemistry", "Drug Formulation", "Hospital Pharmacy"],
     careerPaths: ["Pharmacist Assistant", "Medical Representative", "Drug Inspector"]
+  },
+  {
+    title: "Diploma in Digital Marketing",
+    description: "Online marketing, social media management, and digital advertising.",
+    duration: "1 Year",
+    category: "business" as const,
+    subjects: ["SEO/SEM", "Social Media Marketing", "Content Marketing", "Analytics"],
+    careerPaths: ["Digital Marketing Executive", "Social Media Manager", "Content Creator"]
+  },
+  {
+    title: "Diploma in Interior Design",
+    description: "Space planning, design aesthetics, and architectural visualization.",
+    duration: "3 Years",
+    category: "creative" as const,
+    subjects: ["Space Planning", "Color Theory", "3D Modeling", "Building Materials"],
+    careerPaths: ["Interior Designer", "Design Consultant", "Project Coordinator"]
   }
 ];
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden">
-        <div className="hero-gradient">
-          <div className="container mx-auto px-4 py-16 lg:py-24">
-            <div className="grid lg:grid-cols-2 gap-8 items-center">
-              <div className="text-white space-y-6">
-                <div className="space-y-4">
-                  <Badge className="bg-white/20 text-white border-white/30" variant="outline">
-                    Career Guidance Platform
-                  </Badge>
-                  <h1 className="text-4xl lg:text-5xl font-bold leading-tight">
-                    A Map to Your Future: 
-                    <span className="block text-yellow-200">Courses & Career Paths</span>
-                  </h1>
-                  <p className="text-lg text-white/90 max-w-xl">
-                    Confused about what to do after completing 10th grade? Discover polytechnic courses 
-                    that lead directly to careers or higher education opportunities.
-                  </p>
-                </div>
-                
-                <div className="flex flex-wrap gap-4">
-                  <Button variant="hero" size="lg" className="bg-white text-education-primary hover:bg-white/90">
-                    <BookOpen className="h-5 w-5" />
-                    Explore Courses
-                  </Button>
-                  <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10">
-                    <Target className="h-5 w-5" />
-                    Plan Your Path
-                  </Button>
-                </div>
-                
-                <div className="grid grid-cols-3 gap-4 pt-4">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold">20+</div>
-                    <div className="text-sm text-white/80">Course Options</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold">3</div>
-                    <div className="text-sm text-white/80">Years Duration</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold">100%</div>
-                    <div className="text-sm text-white/80">Job Ready</div>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="lg:order-first">
-                <img 
-                  src={heroImage} 
-                  alt="Students exploring career paths after 10th grade"
-                  className="w-full h-auto rounded-2xl shadow-2xl"
-                />
-              </div>
-            </div>
+      {/* Header Section */}
+      <section className="py-12 bg-gradient-to-br from-education-primary/10 via-background to-education-secondary/10">
+        <div className="container mx-auto px-4">
+          <div className="text-center space-y-4">
+            <Badge className="bg-education-primary/20 text-education-primary border-education-primary/30" variant="outline">
+              Career Guidance After 10th Grade
+            </Badge>
+            <h1 className="text-3xl lg:text-4xl font-bold text-foreground">
+              Polytechnic Courses After 10th Grade
+            </h1>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              Explore diploma programs across Engineering, Commerce, Medical, and Creative fields. 
+              Choose your path to a skilled career or higher education.
+            </p>
           </div>
         </div>
       </section>
 
       {/* What is Polytechnic Section */}
-      <section className="py-16 bg-background">
+      <section className="py-12 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center space-y-6">
-            <h2 className="text-3xl font-bold text-foreground">
+            <h2 className="text-2xl font-bold text-foreground">
               What is Polytechnic Education?
             </h2>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-muted-foreground">
               A polytechnic diploma is a vocational course, typically 3 years in duration, that provides 
               hands-on, job-oriented training. Admission is generally based on your 10th-grade results.
             </p>
             
-            <div className="grid md:grid-cols-3 gap-6 mt-12">
+            <div className="grid md:grid-cols-3 gap-6 mt-8">
               <Card className="course-card">
                 <CardContent className="p-6 text-center">
                   <div className="bg-education-primary/10 p-3 rounded-full w-fit mx-auto mb-4">
@@ -217,23 +219,15 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Path Visualization */}
-      <section className="py-16 bg-gradient-to-b from-background to-muted/20">
-        <div className="container mx-auto px-4">
-          <PathVisualization />
-        </div>
-      </section>
-
       {/* Engineering Courses Section */}
-      <section className="py-16 bg-background">
+      <section className="py-12 bg-muted/20">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">
-              Popular Engineering Disciplines
+          <div className="text-center mb-10">
+            <h2 className="text-2xl font-bold text-foreground mb-4">
+              Engineering Diploma Courses
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              These are the most common and in-demand courses. Each provides specialized skills 
-              for specific industries and career paths.
+              Technical and engineering programs that prepare you for hands-on careers in various industries.
             </p>
           </div>
           
@@ -245,20 +239,39 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Other Courses Section */}
-      <section className="py-16 bg-muted/20">
+      {/* Commerce Courses Section */}
+      <section className="py-12 bg-background">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">
-              Other Career-Focused Courses
+          <div className="text-center mb-10">
+            <h2 className="text-2xl font-bold text-foreground mb-4">
+              Commerce & Business Diploma Courses
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Polytechnic colleges offer a wide range of non-engineering programs 
-              that are also highly valuable in today's job market.
+              Business-focused programs that develop administrative and management skills.
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {commerceCourses.map((course, index) => (
+              <CourseCard key={index} {...course} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Other Courses Section */}
+      <section className="py-12 bg-muted/20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl font-bold text-foreground mb-4">
+              Medical, Creative & Other Diploma Courses
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Specialized programs in healthcare, design, and emerging fields.
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {otherCourses.map((course, index) => (
               <CourseCard key={index} {...course} />
             ))}
@@ -266,11 +279,18 @@ const Index = () => {
         </div>
       </section>
 
-      {/* After Diploma Options */}
-      <section className="py-16 bg-background">
+      {/* Path Visualization */}
+      <section className="py-12 bg-background">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">
+          <PathVisualization />
+        </div>
+      </section>
+
+      {/* After Diploma Options */}
+      <section className="py-12 bg-muted/20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl font-bold text-foreground mb-4">
               Your Options After the Diploma
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -278,7 +298,7 @@ const Index = () => {
             </p>
           </div>
           
-          <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {/* Path A: Career */}
             <Card className="course-card feature-shadow">
               <CardHeader>
@@ -309,11 +329,6 @@ const Index = () => {
                     ))}
                   </div>
                 </div>
-                
-                <Button variant="success" className="w-full mt-4">
-                  <Briefcase className="h-4 w-4" />
-                  Explore Job Opportunities
-                </Button>
               </CardContent>
             </Card>
 
@@ -353,38 +368,8 @@ const Index = () => {
                     </div>
                   </div>
                 </div>
-                
-                <Button variant="education" className="w-full mt-4">
-                  <GraduationCap className="h-4 w-4" />
-                  Learn About B.Tech Options
-                </Button>
               </CardContent>
             </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Call to Action */}
-      <section className="py-16 hero-gradient">
-        <div className="container mx-auto px-4 text-center">
-          <div className="max-w-3xl mx-auto text-white space-y-6">
-            <h2 className="text-3xl font-bold">
-              Ready to Start Your Journey?
-            </h2>
-            <p className="text-lg text-white/90">
-              Don't let confusion hold you back. Choose the path that aligns with your interests 
-              and start building your future today.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Button variant="hero" size="lg" className="bg-white text-education-primary hover:bg-white/90">
-                <Target className="h-5 w-5" />
-                Find Your Course
-              </Button>
-              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10">
-                <Users className="h-5 w-5" />
-                Get Guidance
-              </Button>
-            </div>
           </div>
         </div>
       </section>
