@@ -13,7 +13,6 @@ import {
   BookOpen, 
   ArrowRight, 
   CheckCircle, 
-  Target,
   Briefcase,
   TrendingUp
 } from "lucide-react";
@@ -162,6 +161,8 @@ const otherCourses = [
     courseId: "interior-design"
   }
 ];
+
+
 
 const Index = () => {
   const [selectedCourse, setSelectedCourse] = useState<CourseDetail | null>(null);
@@ -406,6 +407,8 @@ const Index = () => {
           </div>
         </div>
       </section>
+      
+      <EBookResources />
 
       {/* Course Detail Modal */}
       <CourseDetailModal 
@@ -416,5 +419,158 @@ const Index = () => {
     </div>
   );
 };
+
+const EBookResources = () => (
+  <section className="py-12 bg-background">
+    <div className="container mx-auto px-4">
+      <div className="text-center mb-10">
+        <h2 className="text-2xl font-bold text-foreground mb-4">
+          Polytechnic E-Books and Resources
+        </h2>
+        <p className="text-muted-foreground max-w-2xl mx-auto">
+          Here are some useful links for e-books and study materials for various diploma courses.
+        </p>
+      </div>
+
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <Card className="course-card">
+          <CardHeader>
+            <CardTitle className="text-xl flex items-center gap-2">
+              <BookOpen className="h-6 w-6 text-education-primary" />
+              Engineering & Science
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4 text-left">
+            <h4 className="font-semibold">Mathematics Semester 1:</h4>
+            <a
+              href="https://www.scribd.com/document/683784530/Mathematics-Polytechnic-Engineering-mathematics-Semester-1-Text-Books"
+              className="text-education-primary hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Mathematics Polytechnic Engineering mathematics Semester 1 Text Books
+            </a>
+            <h4 className="font-semibold mt-4">Mathematics Semester 2:</h4>
+            <a
+              href="https://www.scribd.com/document/752773156/Mathematics-Polytechnic-Engineering-mathematics-Semester-2-Text-Books"
+              className="text-education-primary hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Mathematics Polytechnic Engineering mathematics Semester 2 Text Books
+            </a>
+            <h4 className="font-semibold mt-4">Engineering Chemistry:</h4>
+            <a
+              href="https://tamilmadal.com/2021/10/dote-tamilnadu-polytechnic-text-books.html"
+              className="text-education-primary hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              DOTE Tamilnadu Polytechnic Text Books (Engineering Chemistry)
+            </a>
+            <h4 className="font-semibold mt-4">Engineering Physics:</h4>
+            <a
+              href="https://tamilmadal.com/2021/10/dote-tamilnadu-polytechnic-text-books.html"
+              className="text-education-primary hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              DOTE Tamilnadu Polytechnic Text Books (Engineering Physics)
+            </a>
+          </CardContent>
+        </Card>
+
+        <Card className="course-card">
+          <CardHeader>
+            <CardTitle className="text-xl flex items-center gap-2">
+              <Briefcase className="h-6 w-6 text-education-success" />
+              Commerce Diploma Books
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4 text-left">
+            <h4 className="font-semibold mt-4">Commerce PDF from Tamil Nadu School Education Department:</h4>
+            <a
+              href="https://cdn1.byjus.com/wp-content/uploads/2020/06/tn-board-samacheer-kalvi-class12-Commerce-book-EM.pdf"
+              className="text-education-success hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              12th Grade Commerce Book (English Medium)
+            </a>
+          </CardContent>
+        </Card>
+
+        <Card className="course-card">
+          <CardHeader>
+            <CardTitle className="text-xl flex items-center gap-2">
+              <Users className="h-6 w-6 text-education-secondary" />
+              Medical & Allied Diploma Books
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4 text-left">
+            <h4 className="font-semibold">Free Medical and Allied Health Books:</h4>
+            <a
+              href="https://www.freebookcentre.net/medical_text_books_journals/medical_text_books_online.html"
+              className="text-education-secondary hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Free Medical and Allied Health Books Download
+            </a>
+          </CardContent>
+        </Card>
+         <Card className="course-card col-span-full">
+          <CardHeader>
+            <CardTitle className="text-xl flex items-center gap-2">
+              <GraduationCap className="h-6 w-6 text-education-accent" />
+              Creative and Other Diploma Courses
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4 text-left">
+            <h4 className="font-semibold">Visual Design & DTP (Diploma in Printing Technology):</h4>
+            <a
+              href="http://agpcptech.weebly.com/uploads/1/2/4/2/12423472/vdd_combinepdf.pdf"
+              className="text-education-accent hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Visual Design and DTP PDF
+            </a>
+            <p className="text-muted-foreground text-sm">
+              Covers graphic design fundamentals, typography, color theory, layout, print publishing, and software like Photoshop, Illustrator.
+            </p>
+            <h4 className="font-semibold mt-4">Vocational Diploma in Desk Top Publishing (VDTP) syllabus (Tamil Nadu Open University):</h4>
+            <a
+              href="https://tnou.ac.in/wp-content/uploads/2021/01/VDTP.pdf"
+              className="text-education-accent hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              VDTP Syllabus PDF
+            </a>
+            <h4 className="font-semibold mt-4">DTP for Print Production Practical (Arasan Ganesan Polytechnic College):</h4>
+            <a
+              href="http://agpcptech.weebly.com/uploads/1/2/4/2/12423472/4dtp_for_pp_lab_manual.pdf"
+              className="text-education-accent hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              DTP for Print Production Lab Manual
+            </a>
+            <h4 className="font-semibold mt-4">Visual Design and DTP - "N Scheme Syllabus" PDF:</h4>
+            <a
+              href="https://www.scribd.com/document/722628519/DTP"
+              className="text-education-accent hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              DTP "N Scheme Syllabus"
+            </a>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  </section>
+);
 
 export default Index;

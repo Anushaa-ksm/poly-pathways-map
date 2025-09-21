@@ -335,13 +335,9 @@ export const CourseDetailModal = ({ course, isOpen, onClose }: CourseDetailModal
           </TabsContent>
         </Tabs>
 
-        <div className="flex justify-end space-x-2 mt-6">
+        <div className="flex justify-end mt-6">
           <Button variant="outline" onClick={onClose}>
             Close
-          </Button>
-          <Button variant="education">
-            <BookOpen className="h-4 w-4" />
-            Apply Now
           </Button>
         </div>
       </DialogContent>
