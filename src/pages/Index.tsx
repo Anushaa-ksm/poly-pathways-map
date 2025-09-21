@@ -1,8 +1,11 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CourseCard } from "@/components/CourseCard";
+import { CourseDetailModal, CourseDetail } from "@/components/CourseDetailModal";
 import { PathVisualization } from "@/components/PathVisualization";
+import { getCourseDetails } from "@/data/courseDetails";
 import heroImage from "@/assets/hero-education.jpg";
 import { 
   GraduationCap, 
@@ -23,7 +26,8 @@ const engineeringCourses = [
     duration: "3 Years",
     category: "engineering" as const,
     subjects: ["Structural Engineering", "Construction Management", "AutoCAD", "Surveying"],
-    careerPaths: ["Junior Engineer", "Site Supervisor", "Draftsman", "Construction Manager"]
+    careerPaths: ["Junior Engineer", "Site Supervisor", "Draftsman", "Construction Manager"],
+    courseId: "civil-engineering"
   },
   {
     title: "Diploma in Mechanical Engineering", 
@@ -31,7 +35,8 @@ const engineeringCourses = [
     duration: "3 Years",
     category: "engineering" as const,
     subjects: ["Thermodynamics", "Manufacturing", "CAD/CAM", "Machine Design"],
-    careerPaths: ["Production Supervisor", "CAD/CAM Technician", "Maintenance Engineer", "Quality Inspector"]
+    careerPaths: ["Production Supervisor", "CAD/CAM Technician", "Maintenance Engineer", "Quality Inspector"],
+    courseId: "mechanical-engineering"
   },
   {
     title: "Diploma in Computer Science Engineering",
@@ -39,7 +44,8 @@ const engineeringCourses = [
     duration: "3 Years", 
     category: "engineering" as const,
     subjects: ["Programming", "Data Structures", "Web Development", "Database Management"],
-    careerPaths: ["Software Developer", "Web Developer", "IT Support Specialist", "System Administrator"]
+    careerPaths: ["Software Developer", "Web Developer", "IT Support Specialist", "System Administrator"],
+    courseId: "computer-science"
   },
   {
     title: "Diploma in Electrical Engineering",
@@ -47,7 +53,8 @@ const engineeringCourses = [
     duration: "3 Years",
     category: "engineering" as const,
     subjects: ["Power Systems", "Control Systems", "Electronics", "Electrical Machines"],
-    careerPaths: ["Electrician", "Power Plant Operator", "Technical Officer", "Maintenance Technician"]
+    careerPaths: ["Electrician", "Power Plant Operator", "Technical Officer", "Maintenance Technician"],
+    courseId: "electrical-engineering"
   },
   {
     title: "Diploma in Electronics & Communication",
@@ -55,7 +62,8 @@ const engineeringCourses = [
     duration: "3 Years",
     category: "engineering" as const,
     subjects: ["Digital Electronics", "Communication Systems", "Microprocessors", "Signal Processing"],
-    careerPaths: ["Electronics Technician", "Field Service Engineer", "Telecom Technician"]
+    careerPaths: ["Electronics Technician", "Field Service Engineer", "Telecom Technician"],
+    courseId: "electronics-communication"
   },
   {
     title: "Diploma in Automobile Engineering",
@@ -63,7 +71,8 @@ const engineeringCourses = [
     duration: "3 Years",
     category: "engineering" as const,
     subjects: ["Automotive Systems", "Engine Technology", "Vehicle Dynamics", "Automobile Electronics"],
-    careerPaths: ["Automobile Technician", "Service Advisor", "Quality Control Inspector"]
+    careerPaths: ["Automobile Technician", "Service Advisor", "Quality Control Inspector"],
+    courseId: "automobile-engineering"
   }
 ];
 
@@ -74,7 +83,8 @@ const commerceCourses = [
     duration: "3 Years",
     category: "business" as const,
     subjects: ["Business Management", "Accounting", "Marketing", "Human Resources"],
-    careerPaths: ["Administrative Officer", "Business Coordinator", "Office Manager"]
+    careerPaths: ["Administrative Officer", "Business Coordinator", "Office Manager"],
+    courseId: "business-administration"
   },
   {
     title: "Diploma in Banking & Finance",
@@ -82,7 +92,8 @@ const commerceCourses = [
     duration: "3 Years",
     category: "business" as const,
     subjects: ["Banking Operations", "Financial Accounting", "Insurance", "Investment Planning"],
-    careerPaths: ["Bank Officer", "Financial Advisor", "Insurance Agent"]
+    careerPaths: ["Bank Officer", "Financial Advisor", "Insurance Agent"],
+    courseId: "banking-finance"
   },
   {
     title: "Diploma in Office Management",
@@ -90,7 +101,8 @@ const commerceCourses = [
     duration: "3 Years",
     category: "business" as const,
     subjects: ["Office Administration", "Business Communication", "Computer Applications", "Record Keeping"],
-    careerPaths: ["Office Administrator", "Executive Assistant", "Data Entry Operator"]
+    careerPaths: ["Office Administrator", "Executive Assistant", "Data Entry Operator"],
+    courseId: "office-management"
   }
 ];
 
@@ -101,7 +113,8 @@ const otherCourses = [
     duration: "3 Years",
     category: "business" as const,
     subjects: ["Hotel Operations", "Food & Beverage", "Front Office", "Housekeeping"],
-    careerPaths: ["Hotel Manager", "Restaurant Manager", "Event Coordinator"]
+    careerPaths: ["Hotel Manager", "Restaurant Manager", "Event Coordinator"],
+    courseId: "hotel-management"
   },
   {
     title: "Diploma in Fashion Designing",
@@ -109,7 +122,8 @@ const otherCourses = [
     duration: "3 Years", 
     category: "creative" as const,
     subjects: ["Fashion Design", "Pattern Making", "Textile Science", "Fashion Marketing"],
-    careerPaths: ["Fashion Designer", "Pattern Maker", "Fashion Stylist"]
+    careerPaths: ["Fashion Designer", "Pattern Maker", "Fashion Stylist"],
+    courseId: "fashion-designing"
   },
   {
     title: "Diploma in Medical Laboratory Technology",
@@ -117,7 +131,8 @@ const otherCourses = [
     duration: "3 Years",
     category: "medical" as const,
     subjects: ["Clinical Pathology", "Microbiology", "Biochemistry", "Hematology"],
-    careerPaths: ["Lab Technician", "Medical Technologist", "Research Assistant"]
+    careerPaths: ["Lab Technician", "Medical Technologist", "Research Assistant"],
+    courseId: "medical-lab-technology"
   },
   {
     title: "Diploma in Pharmacy",
@@ -125,7 +140,8 @@ const otherCourses = [
     duration: "2 Years",
     category: "medical" as const,
     subjects: ["Pharmacology", "Pharmaceutical Chemistry", "Drug Formulation", "Hospital Pharmacy"],
-    careerPaths: ["Pharmacist Assistant", "Medical Representative", "Drug Inspector"]
+    careerPaths: ["Pharmacist Assistant", "Medical Representative", "Drug Inspector"],
+    courseId: "pharmacy"
   },
   {
     title: "Diploma in Digital Marketing",
@@ -133,7 +149,8 @@ const otherCourses = [
     duration: "1 Year",
     category: "business" as const,
     subjects: ["SEO/SEM", "Social Media Marketing", "Content Marketing", "Analytics"],
-    careerPaths: ["Digital Marketing Executive", "Social Media Manager", "Content Creator"]
+    careerPaths: ["Digital Marketing Executive", "Social Media Manager", "Content Creator"],
+    courseId: "digital-marketing"
   },
   {
     title: "Diploma in Interior Design",
@@ -141,11 +158,27 @@ const otherCourses = [
     duration: "3 Years",
     category: "creative" as const,
     subjects: ["Space Planning", "Color Theory", "3D Modeling", "Building Materials"],
-    careerPaths: ["Interior Designer", "Design Consultant", "Project Coordinator"]
+    careerPaths: ["Interior Designer", "Design Consultant", "Project Coordinator"],
+    courseId: "interior-design"
   }
 ];
 
 const Index = () => {
+  const [selectedCourse, setSelectedCourse] = useState<CourseDetail | null>(null);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const handleLearnMore = (courseId: string) => {
+    const courseDetails = getCourseDetails(courseId);
+    if (courseDetails) {
+      setSelectedCourse(courseDetails);
+      setModalOpen(true);
+    }
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+    setSelectedCourse(null);
+  };
   return (
     <div className="min-h-screen bg-background">
       {/* Header Section */}
@@ -233,7 +266,7 @@ const Index = () => {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {engineeringCourses.map((course, index) => (
-              <CourseCard key={index} {...course} />
+              <CourseCard key={index} {...course} onLearnMore={handleLearnMore} />
             ))}
           </div>
         </div>
@@ -253,7 +286,7 @@ const Index = () => {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {commerceCourses.map((course, index) => (
-              <CourseCard key={index} {...course} />
+              <CourseCard key={index} {...course} onLearnMore={handleLearnMore} />
             ))}
           </div>
         </div>
@@ -273,7 +306,7 @@ const Index = () => {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {otherCourses.map((course, index) => (
-              <CourseCard key={index} {...course} />
+              <CourseCard key={index} {...course} onLearnMore={handleLearnMore} />
             ))}
           </div>
         </div>
@@ -373,6 +406,13 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Course Detail Modal */}
+      <CourseDetailModal 
+        course={selectedCourse}
+        isOpen={modalOpen}
+        onClose={handleCloseModal}
+      />
     </div>
   );
 };

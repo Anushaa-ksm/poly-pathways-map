@@ -1,6 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, BookOpen, Users, Briefcase } from "lucide-react";
+import { ArrowRight, BookOpen, Users, Briefcase, Eye } from "lucide-react";
 
 interface CourseCardProps {
   title: string;
@@ -10,6 +10,8 @@ interface CourseCardProps {
   careerPaths: string[];
   subjects?: string[];
   className?: string;
+  courseId?: string;
+  onLearnMore?: (courseId: string) => void;
 }
 
 const categoryIcons = {
@@ -20,10 +22,10 @@ const categoryIcons = {
 };
 
 const categoryColors = {
-  engineering: "courses-engineering",
-  creative: "courses-creative", 
-  medical: "courses-medical",
-  business: "courses-business",
+  engineering: "education-primary",
+  creative: "education-secondary", 
+  medical: "education-accent",
+  business: "education-success",
 };
 
 export const CourseCard = ({ 
@@ -33,7 +35,9 @@ export const CourseCard = ({
   category, 
   careerPaths, 
   subjects,
-  className = "" 
+  className = "",
+  courseId,
+  onLearnMore
 }: CourseCardProps) => {
   const Icon = categoryIcons[category];
   
@@ -86,10 +90,15 @@ export const CourseCard = ({
         </div>
         
         <div className="pt-2">
-          <div className="flex items-center text-sm font-medium text-education-primary group-hover:text-education-accent transition-colors">
+          <button 
+            onClick={() => courseId && onLearnMore?.(courseId)}
+            className="flex items-center text-sm font-medium text-education-primary group-hover:text-education-accent transition-colors hover:underline focus:outline-none focus:ring-2 focus:ring-education-primary focus:ring-offset-2 rounded"
+            disabled={!courseId}
+          >
+            <Eye className="h-4 w-4 mr-1" />
             Learn More
             <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
-          </div>
+          </button>
         </div>
       </CardContent>
     </Card>
