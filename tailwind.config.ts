@@ -47,6 +47,19 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        education: {
+          primary: "hsl(var(--education-primary))",
+          secondary: "hsl(var(--education-secondary))",
+          accent: "hsl(var(--education-accent))",
+          success: "hsl(var(--education-success))",
+          warning: "hsl(var(--education-warning))",
+        },
+        courses: {
+          engineering: "hsl(var(--engineering))",
+          creative: "hsl(var(--creative))",
+          medical: "hsl(var(--medical))",
+          business: "hsl(var(--business))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",

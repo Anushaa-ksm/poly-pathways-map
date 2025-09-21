@@ -8,13 +8,36 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 245 100% 98%;
     --foreground: 222.2 84% 4.9%;
+    
+    /* Educational theme colors */
+    --education-primary: 217 91% 60%;
+    --education-secondary: 142 71% 45%;
+    --education-accent: 271 81% 56%;
+    --education-success: 120 93% 35%;
+    --education-warning: 45 93% 47%;
+    
+    /* Course category colors */
+    --engineering: 217 91% 60%;
+    --creative: 330 81% 60%;
+    --medical: 160 84% 39%;
+    --business: 271 81% 56%;
+    
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--education-primary)), hsl(var(--education-accent)));
+    --gradient-card: linear-gradient(145deg, hsl(var(--background)), hsl(245 50% 95%));
+    --gradient-path: linear-gradient(90deg, hsl(var(--education-secondary)), hsl(var(--education-primary)));
+    
+    /* Shadows */
+    --shadow-card: 0 4px 12px hsl(var(--education-primary) / 0.1);
+    --shadow-hover: 0 8px 25px hsl(var(--education-primary) / 0.2);
+    --shadow-feature: 0 10px 40px hsl(var(--education-accent) / 0.3);
 
-    --card: 0 0% 100%;
+    --card: 245 100% 98%;
     --card-foreground: 222.2 84% 4.9%;
 
-    --popover: 0 0% 100%;
+    --popover: 245 100% 98%;
     --popover-foreground: 222.2 84% 4.9%;
 
     --primary: 222.2 47.4% 11.2%;
@@ -39,20 +62,16 @@ All colors MUST be HSL.
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .dark {
@@ -101,5 +120,36 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+  
+  /* Custom component classes */
+  .course-card {
+    @apply relative overflow-hidden rounded-xl p-6 transition-all duration-300;
+    background: var(--gradient-card);
+    box-shadow: var(--shadow-card);
+  }
+  
+  .course-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+  }
+  
+  .path-connector {
+    @apply relative;
+  }
+  
+  .path-connector::after {
+    content: '';
+    @apply absolute top-1/2 left-full w-8 h-0.5 -translate-y-1/2;
+    background: var(--gradient-path);
+  }
+  
+  .hero-gradient {
+    background: var(--gradient-hero);
+  }
+  
+  .feature-shadow {
+    box-shadow: var(--shadow-feature);
   }
 }
